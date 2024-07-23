@@ -8,7 +8,12 @@ class BlogsController < ApplicationController
   end
 
   def create
-
+    Blog.create(title: params[:blog][:title], content: params[:blog][:content])
+    if blog.save
+      redirect_to "/blogs/index"
+    else
+      render new
+    end
   end
 
   def show
@@ -26,4 +31,8 @@ class BlogsController < ApplicationController
   def destroy
 
   end
+
+  private
+    
+
 end
