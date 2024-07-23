@@ -1,4 +1,6 @@
 <h1>一覧画面</h1>
+<%= link_to '投稿画面へ', new_blog_path%>
 <% @blogs.each do |blog| %>
-<%= blog.title %>
+  <%= blog.title %>
+  <%= link_to '詳細', blog_path(blog.id)%>
 <%end%>

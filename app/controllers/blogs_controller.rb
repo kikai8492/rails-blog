@@ -8,16 +8,12 @@ class BlogsController < ApplicationController
   end
 
   def create
-    Blog.create(title: params[:blog][:title], content: params[:blog][:content])
-    if blog.save
-      redirect_to "/blogs/index"
-    else
-      render new
-    end
+    Blog.create(blog_params)
+    redirect_to blogs_path
   end
 
   def show
-
+    @blog = Blog.find(params[:id])
   end
 
   def edit
@@ -33,6 +29,8 @@ class BlogsController < ApplicationController
   end
 
   private
-    
+    def blog_params
+      params.require(:blog).permit(:title,:content)
+    end
 
 end
